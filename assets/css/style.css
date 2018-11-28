@@ -1,0 +1,11 @@
+header {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    border-bottom: 3px solid rgba(17, 4, 138, 0.637);
+}
+h1 {
+    font-size: 500%;
+}
+h2 {
+    font-size: 400%;
+}
