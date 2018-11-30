@@ -1,11 +1,36 @@
 header {
     font-family: 'Lobster', cursive;
+    color: rgb(34, 166, 253);
     text-align: center;
-    border-bottom: 3px solid rgba(17, 4, 138, 0.637);
+    border-bottom: 5px solid rgba(17, 4, 138, 0.637);
 }
 h1 {
     font-size: 500%;
 }
 h2 {
     font-size: 400%;
+    margin-bottom: 20px;
 }
+    .ready {
+        margin: 20px auto 50px auto;
+        text-align: center;
+        width: 600px;
+        font-size: 150%;
+        color: rgb(34, 166, 253);
+    }
+    .directions {
+        margin: 0 auto 5px auto;
+        text-align: center;
+        color: rgb(34, 166, 253);
+        font-size: 150%;
+        font-weight: bold;
+    }
+    .key {
+        color: orange;
+    }
+    .right {
+        color: green;
+    }
+    .wrong {
+        color: red;
+    }
