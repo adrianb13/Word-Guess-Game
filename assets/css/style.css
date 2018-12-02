@@ -3,6 +3,7 @@ header {
     color: rgb(34, 166, 253);
     text-align: center;
     border-bottom: 5px solid rgba(17, 4, 138, 0.637);
+    background-color: rgba(17, 4, 138, 0.637);
 }
 h1 {
     font-size: 500%;
@@ -11,12 +12,18 @@ h2 {
     font-size: 400%;
     margin-bottom: 20px;
 }
+    .box {
+        width: 600px;
+        margin: 40px auto 40px auto;
+        border: 5px solid rgba(17, 4, 138, 0.637);
+        background-color: rgba(17, 4, 138, 0.637);
+    }
     .centerAlign {
         text-align: center;
     }
     .ready {
         margin: 20px auto 40px auto;
-        width: 600px;
+        width: 590px;
         font-size: 150%;
         color: rgb(34, 166, 253);
     }
@@ -56,3 +63,11 @@ h2 {
         color: red;
         font-weight: bold;
     }
+@media (max-width: 600px) {
+    .box {
+        width: auto;
+    }
+    .ready {
+        width: auto;
+    }
+}
