@@ -13,7 +13,7 @@ h2 {
     margin-bottom: 20px;
 }
     .box {
-        width: 600px;
+        width: 640px;
         margin: 40px auto 40px auto;
         border: 5px solid rgba(17, 4, 138, 0.637);
         background-color: rgba(17, 4, 138, 0.637);
@@ -63,7 +63,7 @@ h2 {
         color: red;
         font-weight: bold;
     }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .box {
         width: auto;
     }
