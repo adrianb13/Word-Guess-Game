@@ -25,15 +25,13 @@ h2 {
     }
     .alphabet {
         padding: 10px;
-        color: yellow;
+        color: rgb(241, 182, 103);
         font-size: 150%;
-        font-weight: bold;
     }
     .directions {
         margin: 10px auto 10px auto;
         color: rgb(34, 166, 253);
         font-size: 150%;
-        font-weight: bold;
     }
     .dashMargin {
         margin: 15px auto 15px auto;
@@ -52,7 +50,9 @@ h2 {
     }
     .right {
         color: rgb(0, 202, 0);
+        font-weight: bold;
     }
     .wrong {
         color: red;
+        font-weight: bold;
     }
