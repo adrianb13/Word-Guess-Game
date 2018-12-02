@@ -1,7 +1,8 @@
-const oceanWords = ["meridian", "underwater", "turtle", "trench", "tidalwave", "mackerel", "yellowfin", "sailfish", "octopus", "starfish", "crustaceans", "cephalopods", "invertebrates", "nautilus", "anemone", "jellyfish", "dolphin", "hurricane", "mediterranean"];
+const oceanWords = ["meridian", "underwater", "turtle", "trench", "tidalwave", "mackerel", "yellowfin", "sailfish", "octopus", "starfish", "crustaceans", "cephalopods", "trumpetfish", "nautilus", "anemone", "jellyfish", "dolphin", "butterflyfish", "mediterranean", "sturgeon", "angelfish", "coelacanth", "angelfish", "triggerfish", "crocodile", "geoduck", "caribbean", "pyrosome", "cuttlefish", "barnacle", "anglerfish", "seadragon", "guitarfish", "cormorant", "seahorse", "frigatebird", "angelshark", "blackdragon", "halibut", "hammerhead", "parrotfish", "fringehead", "stringray", "anchoveta", "scorpionfish", "bristlemouth", "flyingfish", "wobbegong", "porcupinefish", "damselfish", "epipelagic", "mesopelagic", "bathypelagic", "abyssopelagic", "hadopelagic", "bioluminescent", "plankton", "rockfish", "albacore", "albatross", "limpet", "penguin", "adriatic", "philippine", "ionian", "caspian"];
+
 const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-let gameWord = oceanWords[Math.floor(Math.random() * 19)];
+let gameWord = oceanWords[Math.floor(Math.random() * oceanWords.length)];
     console.log(gameWord);
 
 let lettersToGuess = [];
@@ -55,6 +56,8 @@ document.onkeyup = function(event) {
     for (j = 0; j < lettersToGuess.length; j++) {
     if (lettersToGuess[j].charAt(0) === guess) {
         blankDisplay.splice(lettersToGuess.indexOf(guess), 1, event.key);
+        blankDisplay.splice(lettersToGuess.lastIndexOf(guess), 1, event.key);
+        blankDisplay.splice(lettersToGuess.indexOf(guess), 1, event.key);
         dashes.textContent = blankDisplay.join(" ");
         }
     }
@@ -84,5 +87,8 @@ document.onkeyup = function(event) {
         dashes.textContent = blankDisplay.join(" ");            directionsText.textContent = "";
         userText.textContent = "";
         winCount.textContent = wins++;
+        var audio = document.getElementById("myAudio");
+        audio.play();
+        audio.controls = true;
     }
 };
