@@ -78,6 +78,10 @@ document.onkeyup = function(event) {
             wrongText.textContent = "You Lose! Try Again!";
             dashes.textContent = lettersToGuess.join(" ");        directionsText.textContent = "";
             userText.textContent = "";
+            var audioTwo = document.getElementById("myAudio2");
+            audioTwo.play();
+            audioTwo.controls = true;
+    
         }
     } 
 
