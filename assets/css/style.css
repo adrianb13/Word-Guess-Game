@@ -11,19 +11,41 @@ h2 {
     font-size: 400%;
     margin-bottom: 20px;
 }
-    .ready {
-        margin: 20px auto 50px auto;
+    .centerAlign {
         text-align: center;
+    }
+    .ready {
+        margin: 20px auto 40px auto;
         width: 600px;
         font-size: 150%;
         color: rgb(34, 166, 253);
     }
+    .alphabetMargin {
+        margin: 10px auto 10px auto;
+    }
+    .alphabet {
+        padding: 10px;
+        color: yellow;
+        font-size: 150%;
+        font-weight: bold;
+    }
     .directions {
-        margin: 0 auto 5px auto;
-        text-align: center;
+        margin: 10px auto 10px auto;
         color: rgb(34, 166, 253);
         font-size: 150%;
         font-weight: bold;
+    }
+    .dashMargin {
+        margin: 15px auto 15px auto;
+        border: 3px solid white;
+        width: 270px;
+    }
+    .dashes {
+        margin: 15px 5px 15px 5px;
+        color: white;
+        font-size: 150%;
+        font-weight: bold;
+        
     }
     .key {
         color: orange;
