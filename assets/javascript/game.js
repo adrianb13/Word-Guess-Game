@@ -39,23 +39,30 @@ document.onkeyup = function(event) {
     var losses = 0;
 
 
-    if (lettersToGuess.indexOf(guess) > -1) {
+    if (lettersToGuess.indexOf(guess) >= 0) {
     // Displays chosen letter is correct
             rightText.textContent = "You guessed Correct!";
             wrongText.textContent = "";
     } else {
     // Displays chosen letter is wrong
             wrongText.textContent = "Wrong, Try Again!";
-            rightText.textContent = ""; 
+            rightText.textContent = "";         
     }
-
+    
     // Replaces dashes with correct letters guess
     for (j = 0; j < lettersToGuess.length; j++) {
     if (lettersToGuess[j].charAt(0) === guess) {
         blankDisplay.splice(lettersToGuess.indexOf(guess), 1, event.key);
         blankDisplay.splice(lettersToGuess.lastIndexOf(guess), 1, event.key);
         dashes.textContent = blankDisplay.join(" ");
+        
         }
+    }
+    console.log(blankDisplay);
+    if (blankDisplay.indexOf(guess) > -1) {
+        answer.pop();
+        console.log(answer);
+        console.log(answer.length);
     }
 
     // Removes letters as letters are press
@@ -63,24 +70,26 @@ document.onkeyup = function(event) {
         alphabet.splice(alphabet.indexOf(guess), 1);
         letters.textContent = "Letters available: " + alphabet.join(" ");
     }
-//
+
+    /* Attempted code, but splicing array even when condition not met
     if (answer.indexOf(guess) > -1); {
         console.log(lettersToGuess.indexOf(guess));
         answer.splice(answer.indexOf(guess), 1);
         console.log(answer);
     }
+    */
 
     // Game endings
     // Math to get guesses left: 
-    var diff = 26 - answer.length; //(right letter guessed)
+    var diff = 26 - alphabet.length; //(right letter guessed)
     console.log(diff);
-    var diff2 = alphabet.length - answer.length; //(wrong letter guessed)
+    var diff2 = answer.length - gameWord.length; //(wrong letter guessed)
     console.log(diff2);
-    var miss = diff - diff2; //(guess deductor)
+    var miss = diff + diff2; //(guess deductor)
     console.log(miss);
-    var guessLeft = 6 - ((26 - answer.length) - (alphabet.length - answer.length));
+    var guessLeft = 6 - ((26 - alphabet.length) + (answer.length - gameWord.length));
     console.log(guessLeft);
-
+ 
     // Loss Condition
     if (lettersToGuess.indexOf(guess) < 0) {
         var guessesLeft = document.getElementById("guesses-left");
