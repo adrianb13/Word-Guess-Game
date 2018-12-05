@@ -26,6 +26,7 @@ h2 {
         width: 590px;
         font-size: 150%;
         color: rgb(34, 166, 253);
+        text-align: justify;
     }
     .alphabetMargin {
         margin: 10px auto 10px auto;

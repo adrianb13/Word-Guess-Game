@@ -8,61 +8,68 @@ let gameWord = oceanWords[Math.floor(Math.random() * oceanWords.length)];
 let lettersToGuess = [];
 let blankDisplay = [];
 let answer = [];
-    for (i = 0; i < gameWord.length; i++) {
-        lettersToGuess.push(gameWord.charAt(i));
-        blankDisplay[i] = "_ ";
-        blankDisplay.push(gameWord.charAt(i));
-        answer.push(gameWord.charAt(i));
-    }
+    
+for (i = 0; i < gameWord.length; i++) {
+    lettersToGuess.push(gameWord.charAt(i));
+    blankDisplay[i] = "_ ";
+    blankDisplay.push(gameWord.charAt(i));
+    answer.push(gameWord.charAt(i));
+}
     console.log(answer);
 
 blankDisplay.splice(lettersToGuess.length ,1);
 blankDisplay.join(" ");
+var guessLeft = 6;
+var wins = 0;
+var losses = 0;
 
+document.onkeyup = function(event1) {
+    if (event1.keyCode === 13) {    
+        var directions = document.getElementById("directions-text");
+        directions.textContent = "Choose a letter to guess the word.";
+    }
+}
 document.onkeyup = function(event) {
+    var directions = document.getElementById("directions-text");
+        directions.textContent = "Choose a letter to guess the word.";
     var dashes = document.getElementById("display-dashes");
         dashes.textContent = blankDisplay.join(" ");
     var letters = document.getElementById("letters-left");
         letters.textContent = "Letters available: " + alphabet.join(" ");
-    var directionsText = document.getElementById("directions-text");
-        directionsText.textContent = "Choose a letter to guess the word.";
     var guess = event.key.toLowerCase();
-    var userText = document.getElementById("user-text");
-        userText.textContent = "You guessed: " + event.key;    
     var rightText = document.getElementById("right-text");
     var wrongText = document.getElementById("wrong-text");
-    var guessesLeft = document.getElementById("guesses-left");
-    var guessLeft = [6];
+    var livesLeft = document.getElementById("lives-left");
     var winCount = document.getElementById("win-count");
-    var wins = 0;
     var lossCount = document.getElementById("loss-count");
-    var losses = 0;
+    var userText = document.getElementById("user-text");
+        userText.textContent = "You guessed: " + event.key;  
 
-
-    if (lettersToGuess.indexOf(guess) >= 0) {
+    if (lettersToGuess.indexOf(guess) >= 0 && event.keyCode !== 13) {
     // Displays chosen letter is correct
-            rightText.textContent = "You guessed Correct!";
-            wrongText.textContent = "";
-    } else {
+        rightText.textContent = "You guessed Correct!";
+        wrongText.textContent = "";
+    } else if (lettersToGuess.indexOf(guess) < 0 && event.keyCode !== 13) {
     // Displays chosen letter is wrong
-            wrongText.textContent = "Wrong, Try Again!";
-            rightText.textContent = "";         
+        wrongText.textContent = "Wrong, Try Again!";
+        rightText.textContent = ""; 
+        guessLeft--;
+        console.log(guessLeft);
+        livesLeft.textContent = guessLeft;       
     }
     
     // Replaces dashes with correct letters guess
     for (j = 0; j < lettersToGuess.length; j++) {
-    if (lettersToGuess[j].charAt(0) === guess) {
-        blankDisplay.splice(lettersToGuess.indexOf(guess), 1, event.key);
-        blankDisplay.splice(lettersToGuess.lastIndexOf(guess), 1, event.key);
-        dashes.textContent = blankDisplay.join(" ");
-        
+        if (lettersToGuess[j].charAt(0) === guess) {
+            blankDisplay.splice(lettersToGuess.indexOf(guess), 1, event.key);
+            blankDisplay.splice(lettersToGuess.lastIndexOf(guess), 1, event.key);
+            dashes.textContent = blankDisplay.join(" ");       
         }
     }
     console.log(blankDisplay);
     if (blankDisplay.indexOf(guess) > -1) {
         answer.pop();
         console.log(answer);
-        console.log(answer.length);
     }
 
     // Removes letters as letters are press
@@ -71,41 +78,20 @@ document.onkeyup = function(event) {
         letters.textContent = "Letters available: " + alphabet.join(" ");
     }
 
-    /* Attempted code, but splicing array even when condition not met
-    if (answer.indexOf(guess) > -1); {
-        console.log(lettersToGuess.indexOf(guess));
-        answer.splice(answer.indexOf(guess), 1);
-        console.log(answer);
-    }
-    */
-
     // Game endings
-    // Math to get guesses left: 
-    var diff = 26 - alphabet.length; //(right letter guessed)
-    console.log(diff);
-    var diff2 = answer.length - gameWord.length; //(wrong letter guessed)
-    console.log(diff2);
-    var miss = diff + diff2; //(guess deductor)
-    console.log(miss);
-    var guessLeft = 6 - ((26 - alphabet.length) + (answer.length - gameWord.length));
-    console.log(guessLeft);
- 
     // Loss Condition
-    if (lettersToGuess.indexOf(guess) < 0) {
-        var guessesLeft = document.getElementById("guesses-left");
-        guessesLeft.textContent = guessLeft;
-        if (guessLeft < 1) {
-            lossCount.textContent = losses = losses + 1;
-            rightText.textContent = "";
-            wrongText.textContent = "You Lose! Try Again!";
-            dashes.textContent = lettersToGuess.join(" ");        
-            directionsText.textContent = "";
-            userText.textContent = "";
-            var audioTwo = document.getElementById("myAudio2");
-            audioTwo.play();
-            audioTwo.controls = true;
-            //document.onkeyup = resetAll(event.key);
-        }
+    if (guessLeft <1) {
+        console.log(guessLeft);
+        lossCount.textContent = losses = losses + 1;
+        rightText.textContent = "";
+        wrongText.textContent = "You Lose! Try Again!";
+        dashes.textContent = lettersToGuess.join(" ");        
+        directions.textContent = "";
+        userText.textContent = "";
+        var audioTwo = document.getElementById("myAudio2");
+        audioTwo.play();
+        audioTwo.controls = true;
+        resetAll();
     } 
 
     //Win Condition
@@ -113,16 +99,17 @@ document.onkeyup = function(event) {
         rightText.textContent = "You Win!!!";
         wrongText.textContent = "";
         dashes.textContent = blankDisplay.join(" ");            
-        directionsText.textContent = "";
+        directions.textContent = "Press ENTER to play again!";
         userText.textContent = "";
         winCount.textContent = wins = wins + 1;
         var audio = document.getElementById("myAudio");
         audio.play();
         audio.controls = true;
+        resetAll();        
     }
 };
 
-/*     resetAll();
+
 function resetAll () {
     let gameWord = oceanWords[Math.floor(Math.random() * oceanWords.length)];
     console.log(gameWord);
@@ -135,12 +122,13 @@ function resetAll () {
             blankDisplay.push(gameWord.charAt(i));
             answer.push(gameWord.charAt(i));
         }
+        blankDisplay.splice(blankDisplay.length-1,1);
     var dashes = document.getElementById("display-dashes");
         dashes.textContent = blankDisplay.join(" ");
     var letters = document.getElementById("letters-left");
         letters.textContent = "Letters Available: a b c d e f g h i j k l m n o p q r s t u v w x y z";
-    var directionsText = document.getElementById("directions-text");
-        directionsText.textContent = "Choose a letter to guess the word.";
+    var directions = document.getElementById("directions-text");
+        directions.textContent = "Press Enter to play again";
     var guess = event.key.toLowerCase();
     var userText = document.getElementById("user-text");
         userText.textContent = "You guessed: " + event.key;    
@@ -148,8 +136,8 @@ function resetAll () {
         rightText.textContent = "";
     var wrongText = document.getElementById("wrong-text");
         wrongText.textContent = "";
-    var guessesLeft = document.getElementById("guesses-left");
-        guessesLeft.textContent = 6;
-    var guessLeft = [6];
+    var livesLeft = document.getElementById("lives-left");
+        livesLeft.textContent = 6;
+    var guessLeft = 6;
     }
- */
+ 
