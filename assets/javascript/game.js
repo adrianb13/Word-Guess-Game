@@ -1,6 +1,6 @@
 const oceanWords = ["meridian", "underwater", "turtle", "trench", "tidalwave", "mackerel", "yellowfin", "sailfish", "octopus", "starfish", "crustaceans", "cephalopods", "trumpetfish", "nautilus", "anemone", "jellyfish", "dolphin", "butterflyfish", "mediterranean", "sturgeon", "angelfish", "coelacanth", "angelfish", "triggerfish", "crocodile", "geoduck", "caribbean", "pyrosome", "cuttlefish", "barnacle", "anglerfish", "seadragon", "guitarfish", "cormorant", "seahorse", "frigatebird", "angelshark", "blackdragon", "halibut", "hammerhead", "parrotfish", "fringehead", "stringray", "anchoveta", "scorpionfish", "bristlemouth", "flyingfish", "wobbegong", "porcupinefish", "damselfish", "epipelagic", "mesopelagic", "bathypelagic", "abyssopelagic", "hadopelagic", "bioluminescent", "plankton", "rockfish", "albacore", "albatross", "limpet", "penguin", "adriatic", "philippine", "ionian", "caspian"];
 
-const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 let gameWord = oceanWords[Math.floor(Math.random() * oceanWords.length)];
     console.log(gameWord);
@@ -27,9 +27,20 @@ document.onkeyup = function(event1) {
     if (event1.keyCode === 13) {    
         var directions = document.getElementById("directions-text");
         directions.textContent = "Choose a letter to guess the word.";
+        console.log(alphabet.join(" "))
     }
 }
 document.onkeyup = function(event) {
+    var audio = document.getElementById("myAudio");
+        audio.pause();
+        audio.controls = false;
+        audio.currentTime = 0;
+    var audioTwo = document.getElementById("myAudio2");
+        audioTwo.pause();
+        audioTwo.controls = false;
+        audioTwo.currentTime = 0;
+    console.log(alphabet.join(" "))
+
     var directions = document.getElementById("directions-text");
         directions.textContent = "Choose a letter to guess the word.";
     var dashes = document.getElementById("display-dashes");
@@ -113,9 +124,11 @@ document.onkeyup = function(event) {
 function resetAll () {
     let gameWord = oceanWords[Math.floor(Math.random() * oceanWords.length)];
     console.log(gameWord);
-    let lettersToGuess = [];
-    let blankDisplay = [];
-    let answer = [];
+    lettersToGuess = [];
+    blankDisplay = [];
+    answer = [];
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
         for (i = 0; i < gameWord.length; i++) {
             lettersToGuess.push(gameWord.charAt(i));
             blankDisplay[i] = "_ ";
@@ -123,21 +136,21 @@ function resetAll () {
             answer.push(gameWord.charAt(i));
         }
         blankDisplay.splice(blankDisplay.length-1,1);
-    var dashes = document.getElementById("display-dashes");
+        dashes = document.getElementById("display-dashes");
         dashes.textContent = blankDisplay.join(" ");
-    var letters = document.getElementById("letters-left");
+        letters = document.getElementById("letters-left");
         letters.textContent = "Letters Available: a b c d e f g h i j k l m n o p q r s t u v w x y z";
-    var directions = document.getElementById("directions-text");
+        directions = document.getElementById("directions-text");
         directions.textContent = "Press Enter to play again";
-    var guess = event.key.toLowerCase();
-    var userText = document.getElementById("user-text");
+        guess = event.key.toLowerCase();
+        userText = document.getElementById("user-text");
         userText.textContent = "You guessed: " + event.key;    
-    var rightText = document.getElementById("right-text");
+        rightText = document.getElementById("right-text");
         rightText.textContent = "";
-    var wrongText = document.getElementById("wrong-text");
+        wrongText = document.getElementById("wrong-text");
         wrongText.textContent = "";
-    var livesLeft = document.getElementById("lives-left");
+        livesLeft = document.getElementById("lives-left");
         livesLeft.textContent = 6;
-    var guessLeft = 6;
+        guessLeft = 6;
     }
  

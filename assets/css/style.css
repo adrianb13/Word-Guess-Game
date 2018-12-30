@@ -64,6 +64,19 @@ h2 {
         color: red;
         font-weight: bold;
     }
+footer {
+    text-align: center;
+    color: rgb(34, 166, 253);
+    border-top: 5px solid rgba(17, 4, 138, 0.637);
+    background-color: rgba(17, 4, 138, 0.637);
+    margin: 0px;
+    padding: 5px;
+}
+a:link, a:visited, a:focus, a:hover, a:active {
+    text-decoration: underline;
+    color: rgb(34, 166, 253);
+}
+
 @media (max-width: 640px) {
     .box {
         width: auto;
